@@ -37,6 +37,11 @@ export KUBECONFIG="$(kind get kubeconfig-path --name="kind")"
 Informações do cluster:
 
 kubectl cluster-info
+
+Conecte no su cluster: 
+
+kubectl cluster-info --context kind-kind
+
 Visualize seus clusters:
 
 kind get clusters
@@ -225,3 +230,7 @@ Acesse a url http:localhost:8080 e visualize as informações do PHP.
 Para destruir o cluster:
 
 kind delete cluster --name kind
+
+
+Para a realização do teste, execute o comando sem este parâmetro, ficando da seguinte maneira:
+kubectl run -it fortio --rm --image=fortio/fortio -- load -qps 800 -t 120s -c 70 "http://goserver-service/healthz"
