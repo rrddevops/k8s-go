@@ -231,6 +231,48 @@ Para destruir o cluster:
 
 kind delete cluster --name kind
 
-
+######################################################
 Para a realização do teste, execute o comando sem este parâmetro, ficando da seguinte maneira:
 kubectl run -it fortio --rm --image=fortio/fortio -- load -qps 800 -t 120s -c 70 "http://goserver-service/healthz"
+
+Listar as conexões existentes
+kubectl config get-contexts
+kubectl config view
+kubectl config current-cotext
+
+Set contexto: 
+kubetctl cofig set-context dev --namespace=dev --cluster=kind --user=kind
+kubectl config use-context dev
+
+###################statefulset################
+
+kubernetes stateless vs stateful
+https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
+Ordem de criação para leitura de disco
+
+######### NameSpace ########
+Descobrir as name spaces:
+kubectl get namespaces
+
+kubectl create ns dev
+kubectl aply -f .yaml -n dev
+
+arquivo yaml
+  spec:
+    namespace: dev
+
+kubectl apply -f deployment.yaml -n=dev
+
+########################usando outra service account#######
+
+kubectl get serviceaccounts
+default
+
+/var/run/secrets dentro do pod
+
+RBAC - Role ou ClusterRole
+
+List api e groups:
+kubectl api-resources
+
+kubectl describe pod-name
